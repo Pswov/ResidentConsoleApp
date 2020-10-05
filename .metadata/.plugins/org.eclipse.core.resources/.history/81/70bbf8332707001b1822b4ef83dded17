@@ -1,0 +1,10 @@
+package com.revature.models;
+
+public class Car {
+	int id;
+	String make;
+	String model;
+	int year;
+	String license_plate;
+	Resident resident;
+}
