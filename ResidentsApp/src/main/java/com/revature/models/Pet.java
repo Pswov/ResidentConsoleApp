@@ -4,7 +4,7 @@ public class Pet {
 	int pet_Id;
 	String breed;
 	String name;
-	int apartment_id;
+	Apartment apt;
 	boolean is_service_animal;
 	public int getPetId() {
 		return pet_Id;
@@ -24,13 +24,13 @@ public class Pet {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getApartment_id() {
-		return apartment_id;
+	public Apartment getApartment() {
+		return apt;
 	}
-	public void setApartment_id(int apartment_id) {
-		this.apartment_id = apartment_id;
+	public void setApartment(Apartment apt) {
+		this.apt = apt;
 	}
-	public boolean isIs_service_animal() {
+	public boolean is_service_animal() {
 		return is_service_animal;
 	}
 	public void setIs_service_animal(boolean is_service_animal) {
