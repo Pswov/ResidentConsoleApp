@@ -19,13 +19,20 @@ public class PetsDAOImpl implements GenericDAO<Pet> {
 	}
 	public void create(Pet pet) {
 		try {
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO pets "
-					+ "(breed, name, apartment_id, is_service_animal) VALUES (?, ?, ?, ?);");
-			ps.setString(1, pet.getBreed());
-			ps.setString(2, pet.getName());
-			ps.setInt(3, pet.getApartment().getId());
-			ps.setBoolean(4, pet.is_service_animal());
-			ps.executeUpdate();
+			if(pet!=null) {
+				PreparedStatement ps1= connection.prepareStatement("SELECT * FROM pets WHERE id = ?");
+				ps1.setInt(1, pet.getPetId());
+				ResultSet rs = ps1.executeQuery();
+				if(!rs.next()) {
+					PreparedStatement ps = connection.prepareStatement("INSERT INTO pets "
+							+ "(breed, name, apartment_id, is_service_animal) VALUES (?, ?, ?, ?);");
+					ps.setString(1, pet.getBreed());
+					ps.setString(2, pet.getName());
+					ps.setInt(3, pet.getApartment().getId());
+					ps.setBoolean(4, pet.is_service_animal());
+					ps.executeUpdate();
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
